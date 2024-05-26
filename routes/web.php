@@ -17,5 +17,6 @@ use App\Http\Controllers\SqlController;
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/users', [PageController::class, 'users'])->name('users');
+Route::get('getAllUsers', [SqlController::class, 'getAllUsers'])->name('getAllUsers');
 Route::post('add', [SqlController::class, 'add']);
 Route::post('authentication', [SqlController::class, 'authentication']);

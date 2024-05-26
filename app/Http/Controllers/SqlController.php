@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +51,26 @@ class SqlController extends Controller
             } else {
                 echo 3;
             }
+        } else {
+            echo 2;
+        }
+    }
+
+    public function getAllUsers()
+    {
+        $users = User::all();
+        $all_users = [];
+        foreach ($users as $user) {
+            $row = [
+                'name_surname' => $user->name_surname,
+                'username' => $user->username,
+                'phone_number' => $user->phone,
+                'islem' => "<button class='btn btn-warning btn-sm'><i class='fa fa-refresh'></i></button> <button class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>"
+            ];
+            array_push($all_users, $row);
+        }
+        if (!empty($all_users)) {
+            echo json_encode($all_users);
         } else {
             echo 2;
         }
